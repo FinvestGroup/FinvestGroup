@@ -1,0 +1,177 @@
+/*!
+ * Propeller Pro v1.1.0 (https://pro.propeller.in/): pmd-carousel.css
+ * Copyright 2016-2018 Digicorp Information Systems Pvt. Ltd.
+ * License: GNU General Public License v2.0 or later
+ * License URI: http://www.gnu.org/licenses/gpl-2.0.html
+ */
+
+/* -------------------------------
+	Owl Carousel 
+------------------------------- */
+
+.owl-height {
+    -webkit-transition: height .5s ease-in-out 0s;
+    transition: height .5s ease-in-out 0s;
+}
+/* Carousel Dots */
+.owl-dots {
+    position: absolute;
+    bottom: 50px;
+    text-align: center;
+    left: 0;
+    right: 0;
+}
+
+.owl-dot, .owl-carousel button.owl-dot {
+    background-color: #fff;
+    height: 13px;
+    width: 13px;
+    border-radius: 50%;
+    margin: 0 4px;
+    display: inline-block;
+    opacity: 0.7;
+    -webkit-box-shadow: 0 2px 8px rgba(0,0,0,0.54);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.54);
+}
+
+    .owl-dot.active, .owl-carousel button.owl-dot.active {
+        opacity: 1;
+        -webkit-transform: scale(1.4);
+        transform: scale(1.4);
+        -webkit-transition: all ease-in-out 0.3s;
+        transition: all ease-in-out 0.3s;
+        background-color: #4acc8e;
+    }
+/* Carousel Next Prev */
+.owl-carousel .owl-nav button {
+    outline: none;
+}
+
+    .owl-carousel .owl-nav button span {
+        display: none;
+    }
+
+    .owl-carousel .owl-nav button.owl-prev,
+    .owl-carousel .owl-nav button.owl-next {
+        position: absolute;
+        top: 46%;
+        direction: ltr;
+        display: inline-block;
+        font-family: "Material Icons";
+        -webkit-font-feature-settings: "liga";
+        font-feature-settings: "liga";
+        font-style: normal;
+        font-weight: normal;
+        line-height: 1;
+        overflow-wrap: normal;
+        text-transform: none;
+        white-space: nowrap;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 255, 255, 0.65);
+        a
+    }
+
+    .owl-carousel .owl-nav button.owl-next {
+        right: 50px;
+    }
+
+    .owl-carousel .owl-nav button.owl-prev {
+        left: 50px;
+    }
+
+        .owl-carousel .owl-nav button.owl-prev:hover,
+        .owl-carousel .owl-nav button.owl-prev:focus,
+        .owl-carousel .owl-nav button.owl-next:hover,
+        .owl-carousel .owl-nav button.owl-next:focus {
+            border-color: #fff;
+            color: #fff;
+        }
+
+        .owl-carousel .owl-nav button.owl-next:after,
+        .owl-carousel .owl-nav button.owl-prev:after {
+            font-family: "Material icons";
+            left: 6px;
+            right: 6px;
+            top: 6px;
+            position: absolute;
+            font-size: 34px;
+            color: rgba(255, 255, 255, 0.65);
+        }
+
+    .owl-carousel .owl-nav button.owl-next:after {
+        content: "\E315";
+    }
+
+    .owl-carousel .owl-nav button.owl-prev:after {
+        content: "\E314";
+    }
+
+    .owl-carousel .owl-nav button.owl-prev:hover::after,
+    .owl-carousel .owl-nav button.owl-next:hover::after {
+        color: #fff;
+    }
+
+/*card carousel*/
+.pmd-card-carousel .pmd-card {
+    margin: 0 15px 20px;
+}
+
+.pmd-card-carousel.owl-carousel .owl-nav button.owl-prev,
+.pmd-card-carousel.owl-carousel .owl-nav button.owl-next {
+    top: 50%;
+    margin-top: -44px;
+    border: 2px solid #000;
+    opacity: 0.3;
+}
+
+.pmd-card-carousel.owl-carousel .owl-nav button.owl-next {
+    right: -65px;
+}
+
+.pmd-card-carousel.owl-carousel .owl-nav button.owl-prev {
+    left: -65px;
+}
+
+    .pmd-card-carousel.owl-carousel .owl-nav button.owl-prev:hover,
+    .pmd-card-carousel.owl-carousel .owl-nav button.owl-prev:focus,
+    .pmd-card-carousel.owl-carousel .owl-nav button.owl-next:hover,
+    .pmd-card-carousel.owl-carousel .owl-nav button.owl-next:focus {
+        border-color: #4acc8e;
+        color: #044471;
+        opacity: 1;
+    }
+
+    .pmd-card-carousel.owl-carousel .owl-nav button.owl-next:after,
+    .pmd-card-carousel.owl-carousel .owl-nav button.owl-prev:after {
+        color: #000;
+    }
+
+    .pmd-card-carousel.owl-carousel .owl-nav button.owl-prev:hover::after,
+    .pmd-card-carousel.owl-carousel .owl-nav button.owl-next:hover::after {
+        color: #4acc8e;
+    }
+
+/*card carousel dot outside*/
+.outside-dots {
+    padding-bottom: 40px;
+}
+
+    .outside-dots .owl-dots {
+        bottom: 0;
+    }
+
+@media screen and (max-width: 1300px) {
+    .pmd-card-carousel.owl-carousel .owl-nav button.owl-next {
+        right: -38px;
+    }
+
+    .pmd-card-carousel.owl-carousel .owl-nav button.owl-prev {
+        left: -38px;
+    }
+}
+
+.video-carousel.owl-carousel .item-video {
+    height: 300px
+}

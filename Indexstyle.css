@@ -1,0 +1,204 @@
+﻿
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    font-family: 'Assistant', sans-serif;
+}
+
+main {
+    padding-left: 5%;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    overflow-x: auto;
+    position: relative;
+}
+
+.box {
+    box-sizing: border-box;
+    width: 100%; /* Mobile default width */
+}
+
+#logo {
+    width: 60vmin; /* Mobile default width */
+}
+
+.Images {
+    width: 95%; /* Mobile default width */
+    height: auto;
+}
+
+#Image1, #image3 {
+    float: right;
+    border-top-left-radius: 4em;
+    border-bottom-left-radius: 4em;
+}
+
+#image2 {
+    border-top-right-radius: 4em;
+    border-bottom-right-radius: 4em;
+}
+
+.textp {
+    font-size: 8vmin; /* Mobile default font size */
+    font-weight: 800;
+}
+
+.ptext {
+    font-size: 5vmin; /* Mobile default font size */
+    color: #757c86;
+}
+
+.text {
+    padding-bottom: 2vmin;
+    padding-top: 2vmin;
+}
+
+.maintext {
+    font-size: 9vmin; /* Mobile default font size */
+    margin-right: 1vw;
+    font-weight: 900;
+}
+
+.pmaintext {
+    font-size: 5vmin; /* Mobile default font size */
+    margin-right: 1vw;
+    color: #757c86;
+}
+
+.tgcell, .tgclast {
+    font-size: 3vmin; /* Mobile default font size */
+    height: auto;
+    width: 30vw;
+}
+
+.Review {
+    width: 80vw;
+}
+
+.ReviewsImg {
+    height: auto;
+    width: 30vw;
+}
+
+.table {
+    margin-left:;
+    border:;
+    width: 90%;
+    vertical-align: middle;
+    text-align: center;
+    color: #757c86;
+}
+
+.button {
+    color: #ffffff;
+    background-color: #a15d6f;
+    font-size: 8vmin;
+    border: 0px solid #ffffff;
+    border-radius: 0.5em;
+    padding-left: 17.5vmin;
+    padding-right: 17.5vmin;
+    padding-top: 5vmin;
+    padding-bottom: 5vmin;
+    letter-spacing: normal;
+    cursor: pointer;
+    font-style: normal;
+    font-weight: 400;
+    margin: 2vh;
+}
+
+.buttonrd {
+    margin-bottom: 3vh;
+    padding-left: 10.5vmin;
+    padding-right: 10.5vmin;
+    padding-top: 4vmin;
+    padding-bottom: 4vmin;
+    font-size: 5vmin;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: normal;
+    cursor: pointer;
+    border: 0px solid #ffffff;
+    border-radius: 0.5em;
+    color: #ffffff;
+    background-color: #a15d6f;
+}
+
+#form {
+    border-color: #757c86;
+    border: 1px solid;
+    border-radius: 4em;
+    height:;
+    width: auto;
+    margin-left: 5vw;
+    margin-right: 5vw;
+    text-align: center;
+    background-image: url('../regbg.jfif');
+    background-size: cover;
+    background-position: center bottom;
+    z-index: 1000;
+}
+
+.form-field {
+    width: 80%;
+    aspect-ratio: 18/1;
+    margin-top: 2.5vh;
+    border-radius: 0.5em;
+    border-color: #757c86;
+    height: 15vmin;
+    font-size: 6vmin;
+}
+
+
+.DivsText {
+    width: 100vw;
+    border: 1px solid;
+    height: auto;
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 2%;
+    padding-right: 1%;
+}
+
+#boxundertext {
+    text-align: center;
+    width: 100vw;
+    background-color: #9d596b;
+    display: table;
+    vertical-align: middle;
+    border-radius: 4em;
+    margin-top: 15vmin;
+    margin-bottom: 10vmin;
+    height: 70vmin;
+}
+
+#reviewtableth, #reviewtableimg, #reviewtablename {
+    border: 1px solid #ddd;
+    padding: 8px;
+    color: white;
+    font-size: 5vmin;
+}
+
+#reviewtableimg {
+    height: auto;
+    width:;
+    text-align: right;
+}
+
+#reviewtablename {
+    text-align: left;
+}
+
+.cell {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+}
