@@ -369,7 +369,7 @@
             text-align: center;
         }
 
-        header nav .li {
+        header nav li {
             text-decoration: inherit;
             padding: 20px 0px;
             color: white;
@@ -469,8 +469,9 @@
             <nav id="navigation-list">
                 <ul>
                     <li></li>
-                    <button onclick="loadSubpage('subpage2')" class="li">Load Subpage 2 Content</button>
-                    <li><a href="#item3">Item3</a></li>
+                    <li onclick="loadSubpage('subpage2')">Subpage 2</li>
+                    <li onclick="loadSubpage('subpage3')">Subpage 3</li>
+                    <li onclick="loadSubpage('subpage4')">Subpage 4</li>
                     ...
                 </ul>
             </nav>
