@@ -424,8 +424,8 @@
             </div>
             <nav id="navigation-list">
                 <ul>
-                    <li onclick="loadSubpage('subpage1')">Item1</a></li>
-                    <li><a href="#item2">Item2</a></li>
+                    <li></li>
+                    <li><button onclick="loadSubpage('subpage2')">Load Subpage 2 Content</button></li>
                     <li><a href="#item3">Item3</a></li>
                     ...
                 </ul>
@@ -629,7 +629,7 @@
         <script>
             function loadSubpage(subpage) {
                 // Fetch plain text content from GitHub
-                fetch(`https://github.com/FinvestGroup/FinvestGroup/tree/main/Subpages/html/` ${subpage})
+                fetch(`https://github.com/FinvestGroup/FinvestGroup/tree/main/Subpages/html/`+${subpage})
                     .then(response => {
                         if (!response.ok) {
                             throw new Error(`Failed to load HTML content for ${subpage}`);
