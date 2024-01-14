@@ -13,6 +13,36 @@
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Archivo&family=Archivo+Black&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@200&display=swap" rel="stylesheet">
+    <script>
+    function loadSubpage(subpage) {
+            // Fetch plain text content from GitHub
+            fetch(`https://github.com/FinvestGroup/FinvestGroup/tree/main/Subpages/html/${subpage}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Failed to load HTML content for ${subpage}`);
+                    }
+                    return response.text();
+                })
+                .then(htmlContent => {
+                    // Extract the head section content
+                    const headMatch = htmlContent.match(/<head>([\s\S]*?)<\/head>/i);
+                    const headContent = headMatch ? headMatch[1] : '';
+
+                    // Replace the content of the 'headContainer' div with the extracted head section
+                    document.head.innerHTML = headContent;
+
+                    // Extract the rawLines content
+                    const rawLinesMatch = htmlContent.match(/"rawLines":\s*\["([\s\S]*?)"\]/);
+
+                    // Remove all double quotes (") and commas (,) from the extracted text
+                    const extractedText = rawLinesMatch ? rawLinesMatch[1].replace(/["']/g, "").replace(/,/g, "") : 'No content found';
+
+                    // Replace the content of the 'contentContainer' div with the extracted text
+                    document.getElementById('contentContainer').innerHTML = extractedText;
+                })
+                .catch(error => console.error(error));
+        }
+    </script>
     <style>
         /* Bootstrap css */
         @import "https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css";
@@ -333,13 +363,13 @@
             text-transform: uppercase;
             transition: all 0.4s;
             -webkit-transition: all 0.4s;
-            height:10vh;
-            line-height:10vh;
+            height: 10vh;
+            line-height: 10vh;
         }
 
-            header nav li a:hover {
-                background-color: #2c3e50;
-            }
+        header nav li a:hover {
+            background-color: #2c3e50;
+        }
 
         .menuBtn {
             display: block;
@@ -358,20 +388,20 @@
             }
 
         .left .menuBtn {
-            width:46vw;
+            width: 46vw;
         }
 
         .container {
             width: 100vw;
             display: flex;
-            padding-left:0vw;
-            padding-right:0vw;
+            padding-left: 0vw;
+            padding-right: 0vw;
         }
 
         .left-div, .right-div {
             width: 40vw;
             padding-top: 5vw;
-            padding-bottom:5vw;
+            padding-bottom: 5vw;
             box-sizing: border-box;
             display: flex;
             align-items: center;
@@ -399,7 +429,7 @@
         }
 
         .right-div {
-            justify-content: flex-start ; /* Align items to the right in right-div */
+            justify-content: flex-start; /* Align items to the right in right-div */
         }
 
         #navigation-list li {
@@ -409,7 +439,7 @@
         }
 
         #navigation-list ul {
-            display:contents;
+            display: contents;
         }
     </style>
 </head>
@@ -430,6 +460,7 @@
                     ...
                 </ul>
             </nav>
+            
     </header>
     <div id="contentContainer">
         <div class="Divs">
@@ -626,36 +657,9 @@
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js"></script>
+
         <script>
-            function loadSubpage(subpage) {
-                // Fetch plain text content from GitHub
-                fetch(`https://github.com/FinvestGroup/FinvestGroup/tree/main/Subpages/html/`+${subpage})
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error(`Failed to load HTML content for ${subpage}`);
-                        }
-                        return response.text();
-                    })
-                    .then(htmlContent => {
-                        // Extract the head section content
-                        const headMatch = htmlContent.match(/<head>([\s\S]*?)<\/head>/i);
-                        const headContent = headMatch ? headMatch[1] : '';
-
-                        // Replace the content of the 'headContainer' div with the extracted head section
-                        document.head.innerHTML = headContent;
-
-                        // Extract the rawLines content
-                        const rawLinesMatch = htmlContent.match(/"rawLines":\s*\["([\s\S]*?)"\]/);
-
-                        // Remove all double quotes (") and commas (,) from the extracted text
-                        const extractedText = rawLinesMatch ? rawLinesMatch[1].replace(/["']/g, "").replace(/,/g, "") : 'No content found';
-
-                        // Replace the content of the 'contentContainer' div with the extracted text
-                        document.getElementById('contentContainer').innerHTML = extractedText;
-                    })
-                    .catch(error => console.error(error));
-            }
-
+            
 
             $(document).ready(function () {
                 $(".owl-carousel").owlCarousel({
