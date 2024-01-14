@@ -425,7 +425,7 @@
             </div>
             <nav id="navigation-list">
                 <ul>
-                    <li></li>
+                    <li onclick="loadSubpage('subpage1')">Subpage 1</li>
                     <li onclick="loadSubpage('subpage2')">Subpage 2</li>
                     <li onclick="loadSubpage('subpage3')">Subpage 3</li>
                     <li onclick="loadSubpage('subpage4')">Subpage 4</li>
@@ -633,29 +633,7 @@
     <script>
 
 
-        $(document).ready(function () {
-            $(".owl-carousel").owlCarousel({
-                center: true,
-                stagePadding: 40, // Adjust this value to control how much of the adjacent items are visible
-                loop: true,
-                margin: 5,
-                autoplay: true,
-                responsive: {
-                    0: {
-                        items: 1
-                    },
-                    600: {
-                        items: 1
-                    },
-                    1000: {
-                        items: 3
-                    }
-                }
-            });
-            var dots = $('.owl-dots').css('position', 'absolute').css('bottom', '-8vh');
-            dots.css('left', 'calc(50% - ' + dots.width() / 2 + 'px)');
-        });
-
+       
 
 
         jQuery(document).ready(function ($) {
@@ -781,6 +759,16 @@
         }
     </script>
     <script>
+        const subpage1Content = {
+            title: 'FinvestGroup',
+            body: `
+            <div>
+                <h2>FinvestGroup Content</h2>
+                <p>This is the content for FinvestGroup.</p>
+            </div>
+        `
+        }
+
         // Content for Subpage 2
         const subpage2Content = {
             title: 'Subpage 2',
@@ -814,11 +802,60 @@
         `
         };
 
+        // Original content of the 'contentContainer' div
+        const originalContent = document.getElementById('contentContainer').innerHTML;
+
+        // Function to set up the carousel
+        function setupCarousel() {
+            $(".owl-carousel").owlCarousel({
+                center: true,
+                stagePadding: 40,
+                loop: true,
+                margin: 5,
+                autoplay: true,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    600: {
+                        items: 1
+                    },
+                    1000: {
+                        items: 3
+                    }
+                }
+            });
+            var dots = $('.owl-dots').css('position', 'absolute').css('bottom', '-8vh');
+            dots.css('left', 'calc(50% - ' + dots.width() / 2 + 'px)');
+        }
+
+        // Call setupCarousel on page load
+        $(document).ready(function () {
+            setupCarousel();
+        });
+
         function loadSubpage(subpage) {
             let selectedContent;
 
             // Choose the appropriate content based on the selected subpage
-            if (subpage === 'subpage2') {
+            if (subpage === 'subpage1') {
+                // Restore original content
+                selectedContent = {
+                    title: 'FinvestGroup',
+                    body: originalContent
+                };
+
+                // Update the <title> element
+                document.title = selectedContent.title;
+
+                // Update the inner HTML of the 'contentContainer' div
+                document.getElementById('contentContainer').innerHTML = selectedContent.body;
+
+                // Use setTimeout to ensure that the content is updated before calling setupCarousel
+                setTimeout(function () {
+                    setupCarousel();
+                }, 0);
+            } else if (subpage === 'subpage2') {
                 selectedContent = subpage2Content;
             } else if (subpage === 'subpage3') {
                 selectedContent = subpage3Content;
@@ -832,10 +869,10 @@
                 };
             }
 
-            // Update the <title> element
+            // Update the <title> element for other subpages
             document.title = selectedContent.title;
 
-            // Update the inner HTML of the 'contentContainer' div
+            // Update the inner HTML of the 'contentContainer' div for other subpages
             document.getElementById('contentContainer').innerHTML = selectedContent.body;
         }
     </script>
