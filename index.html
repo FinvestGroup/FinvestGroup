@@ -628,45 +628,32 @@
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js"></script>
         <script>
             function loadSubpage(subpage) {
-                // Fetch HTML content
-                fetch(`https://github.com/FinvestGroup/FinvestGroup/blob/main/Subpages/html/Subpage1.html`)
-                    .then(response => response.text())
+                // Fetch plain text content from GitHub
+                fetch(`https://github.com/FinvestGroup/FinvestGroup/tree/main/Subpages/html/` ${subpage})
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`Failed to load HTML content for ${subpage}`);
+                        }
+                        return response.text();
+                    })
                     .then(htmlContent => {
-                        // Replace the content of the 'contentContainer' div
-                        document.getElementById('contentContainer').innerHTML = htmlContent;
-                    });
+                        // Extract the head section content
+                        const headMatch = htmlContent.match(/<head>([\s\S]*?)<\/head>/i);
+                        const headContent = headMatch ? headMatch[1] : '';
 
-                // Fetch styles
-                fetch(`subpages/css${subpage}.css`)
-                    .then(response => response.text())
-                    .then(cssContent => {
-                        // Create a style element and set its content
-                        var styleElement = document.createElement('style');
-                        styleElement.innerHTML = cssContent;
-
-                        // Append the style element to the head
-                        document.head.appendChild(styleElement);
-                    });
-
-                // Fetch scripts
-                fetch(`subpages/js${subpage}.js`)
-                    .then(response => response.text())
-                    .then(jsContent => {
-                        // Create a script element and set its content
-                        var scriptElement = document.createElement('script');
-                        scriptElement.innerHTML = jsContent;
-
-                        // Append the script element to the body
-                        document.body.appendChild(scriptElement);
-                    });
-
-                // Fetch head content
-                fetch(`subpages/head${subpage}-head.html`)
-                    .then(response => response.text())
-                    .then(headContent => {
-                        // Replace the content of the 'head' section
+                        // Replace the content of the 'headContainer' div with the extracted head section
                         document.head.innerHTML = headContent;
-                    });
+
+                        // Extract the rawLines content
+                        const rawLinesMatch = htmlContent.match(/"rawLines":\s*\["([\s\S]*?)"\]/);
+
+                        // Remove all double quotes (") and commas (,) from the extracted text
+                        const extractedText = rawLinesMatch ? rawLinesMatch[1].replace(/["']/g, "").replace(/,/g, "") : 'No content found';
+
+                        // Replace the content of the 'contentContainer' div with the extracted text
+                        document.getElementById('contentContainer').innerHTML = extractedText;
+                    })
+                    .catch(error => console.error(error));
             }
 
 
