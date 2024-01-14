@@ -16,7 +16,7 @@
     <script>
     function loadSubpage(subpage) {
             // Fetch plain text content from GitHub
-            fetch(`https://github.com/FinvestGroup/FinvestGroup/tree/main/Subpages/html/${subpage}`)
+            fetch(`https://github.com/FinvestGroup/FinvestGroup/tree/main/Subpages/html/${subpage}.txt`)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error(`Failed to load HTML content for ${subpage}`);
