@@ -14,42 +14,37 @@
     <link href="https://fonts.googleapis.com/css2?family=Archivo&family=Archivo+Black&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@200&display=swap" rel="stylesheet">
     <script>
+        // Content for Subpage 2
         const subpage2Content = {
-            head: `
-        title: 'Subpage 2',
-    `,
+            title: 'Subpage 2',
             body: `
-        <div>
-            <h1>Subpage 2 Content</h1>
-            <p>This is the content for Subpage 2.</p>
-        </div>
-    `
+            <div>
+                <h2>Subpage 2 Content</h2>
+                <p>This is the content for Subpage 2.</p>
+            </div>
+        `
         };
 
         // Content for Subpage 3
         const subpage3Content = {
-            head: `
-        title: 'Subpage 3',
-    `,
+            title: 'Subpage 3',
             body: `
-        <div>
-            <h1>Subpage 3 Content</h1>
-            <p>This is the content for Subpage 3.</p>
-        </div>
-    `
+            <div>
+                <h2>Subpage 3 Content</h2>
+                <p>This is the content for Subpage 3.</p>
+            </div>
+        `
         };
 
         // Content for Subpage 4
         const subpage4Content = {
-            head: `
-        title: 'Subpage 4',
-    `,
+            title: 'Subpage 4',
             body: `
-        <div>
-            <h1>Subpage 4 Content</h1>
-            <p>This is the content for Subpage 4.</p>
-        </div>
-    `
+            <div>
+                <h2>Subpage 4 Content</h2>
+                <p>This is the content for Subpage 4.</p>
+            </div>
+        `
         };
 
         function loadSubpage(subpage) {
@@ -65,7 +60,7 @@
             } else {
                 // Default content or handle invalid subpage
                 selectedContent = {
-                    head: '<title>FinvestGroup</title>',
+                    title: 'FinvestGroup',
                     body: '<p>Invalid subpage selection</p>'
                 };
             }
@@ -73,7 +68,7 @@
             // Update the <title> element
             document.title = selectedContent.title;
 
-            // Insert the selected content into the 'contentContainer' div
+            // Update the inner HTML of the 'contentContainer' div
             document.getElementById('contentContainer').innerHTML = selectedContent.body;
         }
     </script>
