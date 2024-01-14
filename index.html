@@ -14,33 +14,47 @@
     <link href="https://fonts.googleapis.com/css2?family=Archivo&family=Archivo+Black&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@200&display=swap" rel="stylesheet">
     <script>
-    function loadSubpage(subpage) {
-            // Fetch plain text content from GitHub
-            fetch(`https://github.com/FinvestGroup/FinvestGroup/tree/main/Subpages/html/${subpage}.txt`)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`Failed to load HTML content for ${subpage}`);
-                    }
-                    return response.text();
-                })
-                .then(htmlContent => {
-                    // Extract the head section content
-                    const headMatch = htmlContent.match(/<head>([\s\S]*?)<\/head>/i);
-                    const headContent = headMatch ? headMatch[1] : '';
+        // Content for Subpage 2
+        const subpage2Content = `
+        <div>
+            <h1>Subpage 2 Content</h1>
+            <p>This is the content for Subpage 2.</p>
+        </div>
+`;
 
-                    // Replace the content of the 'headContainer' div with the extracted head section
-                    document.head.innerHTML = headContent;
+        // Content for Subpage 3
+        const subpage3Content = `
+        <div>
+            <h1>Subpage 3 Content</h1>
+            <p>This is the content for Subpage 3.</p>
+        </div>
+`;
 
-                    // Extract the rawLines content
-                    const rawLinesMatch = htmlContent.match(/"rawLines":\s*\["([\s\S]*?)"\]/);
+        // Content for Subpage 4
+        const subpage4Content = `
+        <div>
+            <h1>Subpage 4 Content</h1>
+            <p>This is the content for Subpage 4.</p>
+        </div>
+`;
 
-                    // Remove all double quotes (") and commas (,) from the extracted text
-                    const extractedText = rawLinesMatch ? rawLinesMatch[1].replace(/["']/g, "").replace(/,/g, "") : 'No content found';
+        function loadSubpage(subpage) {
+            let selectedContent;
 
-                    // Replace the content of the 'contentContainer' div with the extracted text
-                    document.getElementById('contentContainer').innerHTML = extractedText;
-                })
-                .catch(error => console.error(error));
+            // Choose the appropriate content based on the selected subpage
+            if (subpage === 'subpage2') {
+                selectedContent = subpage2Content;
+            } else if (subpage === 'subpage3') {
+                selectedContent = subpage3Content;
+            } else if (subpage === 'subpage4') {
+                selectedContent = subpage4Content;
+            } else {
+                // Default content or handle invalid subpage
+                selectedContent = '<p>Invalid subpage selection</p>';
+            }
+
+            // Insert the selected content into the 'contentContainer' div
+            document.getElementById('contentContainer').innerHTML = selectedContent;
         }
     </script>
     <style>
