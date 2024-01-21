@@ -411,7 +411,79 @@
 
         #navigation-list ul {
             display: contents;
+            font-weight:bold;
+            font-size:3.5vmin;
         }
+
+        .accordion {
+            max-width: 300px;
+            background: linear-gradient(to bottom right, #FFF, #f7f7f7);
+            background: rgba(37, 150, 190, 1);
+            margin: 0 auto;
+            border-radius: 1.5em;
+            box-shadow: 0 10px 15px -20px rgba(0, 0, 0, 0.3), 0 30px 45px -30px rgba(0, 0, 0, 0.3), 0 80px 55px -30px rgba(0, 0, 0, 0.1);
+            font-family: 'Archivo', sans-serif;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 4px 15px;
+        }
+
+        .heading {
+            color: #FFF;
+            font-size: 14px;
+            border-bottom: 1px solid #e7e7e7;
+            letter-spacing: 0.8px;
+            padding: 15px;
+            cursor: pointer;
+
+        }
+
+            .heading:nth-last-child(2) {
+                border-bottom: 0;
+            }
+
+            .heading:hover {
+                background: #1a799c;
+                border-radius: 0;
+            }
+
+            .heading:first-child:hover {
+                border-radius: 3px 3px 0 0;
+            }
+
+            .heading:nth-last-child(2):hover {
+                border-radius: 0 0 3px 3px;
+            }
+
+            .heading::before {
+                content: '';
+                vertical-align: middle;
+                display: inline-block;
+                border-top: 7px solid #f5f5f5;
+                border-left: 7px solid transparent;
+                border-right: 7px solid transparent;
+                float: right;
+                transform: rotate(0);
+                transition: all 0.5s;
+                margin-top: 5px;
+            }
+
+        .active.heading::before {
+            transform: rotate(-180deg);
+        }
+
+        .not-active.heading::before {
+            transform: rotate(0deg);
+        }
+
+        .contents {
+            display: none;
+            background: #FFFAFA;
+            padding: 15px;
+            color: #7f8fa4;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        
     </style>
 </head>
 <body>
@@ -425,10 +497,10 @@
             </div>
             <nav id="navigation-list">
                 <ul>
-                    <li onclick="loadSubpage('subpage1')">Subpage 1</li>
-                    <li onclick="loadSubpage('subpage2')">Subpage 2</li>
-                    <li onclick="loadSubpage('subpage3')">Subpage 3</li>
-                    <li onclick="loadSubpage('subpage4')">Subpage 4</li>
+                    <li onclick="loadSubpage('subpage1')">Domov</li>
+                    <li onclick="loadSubpage('subpage2')">O nás</li>
+                    <li onclick="loadSubpage('subpage3')">FAQ</li>
+                    <li onclick="loadSubpage('subpage4')">Kontakt</li>
                     ...
                 </ul>
             </nav>
@@ -633,206 +705,111 @@
     <script>
 
 
-       
-
-
-        jQuery(document).ready(function ($) {
-            // hide the menu when the page load
-            $("#navigation-list").hide();
-            // when .menuBtn is clicked, do this
-            $(".menuBtn").click(function () {
-                // open the menu with slide effect
-                $("#navigation-list").slideToggle(300);
-            });
-        });
 
 
 
 
 
-        document.addEventListener('DOMContentLoaded', function () {
-            // Add an event listener to the form submission
-            document.getElementById('sheetdb-form').addEventListener('submit', function (event) {
-                // Prevent the default form submission
-                event.preventDefault();
-
-                // Call the function to submit the form data to Cloudflare Worker
-                submitForm();
-            });
-        });
-
-        function submitForm() {
-            // Set submission date and time
-            const currentDate = new Date();
-            document.getElementById('submission-date').value = currentDate.toISOString().split('T')[0];
-            document.getElementById('submission-time').value = currentDate.toISOString().split('T')[1].split('.')[0];
-
-            // Get form data
-            const formData = new FormData(document.getElementById('sheetdb-form'));
-
-            // Convert FormData to a plain object
-            const formDataObject = {};
-            formData.forEach((value, key) => {
-                // Remove the "data[]" prefix from the key
-                const cleanedKey = key.replace(/^data\[/, '').replace(/\]$/, '');
-                formDataObject[cleanedKey] = value;
-            });
-
-            // Log the formDataObject for debugging
-            console.log('formDataObject:', formDataObject);
-
-            // Call Cloudflare Worker to make the POST request
-            fetch('https://formupload.admin-476.workers.dev/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formDataObject),
-            })
-                .then(response => response.json())
-                .then(data => {
-                    // Handle the response as needed
-                    console.log(data);
-
-                    // Optionally, display a success popup
-                    displaySuccessPopup();
-
-                    // Clear form fields
-                    clearFormFields();
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    // Handle the error, display an error popup, or perform other actions
-                    displayErrorPopup();
-                });
-        }
-
-        function clearFormFields() {
-            // Replace 'sheetdb-form' with the actual ID of your form
-            const form = document.getElementById('sheetdb-form');
-
-            // Reset the form
-            form.reset();
-        }
-
-        function displaySuccessPopup() {
-            // Replace with code to display a success popup
-            alert('Form submitted successfully!');
-        }
-
-        function displayErrorPopup() {
-            // Replace with code to display an error popup
-            alert('Error submitting the form. Please try again.');
-        }
 
 
-        // Get the child div by its id
-        var childDiv1 = document.getElementById('text1');
-        var childDiv2 = document.getElementById('text2');
-        var childDiv3 = document.getElementById('text3');
-
-        // Get the computed height of the child div
-        var childHeight1 = window.getComputedStyle(childDiv1).height;
-        var childHeight2 = window.getComputedStyle(childDiv2).height;
-        var childHeight3 = window.getComputedStyle(childDiv3).height;
-
-        // Set the height of the parent div (DivText1) to be the same as the height of its child div
-        document.getElementById('DivText1').style.height = childHeight1;
-        document.getElementById('DivText2').style.height = childHeight2;
-        document.getElementById('DivText3').style.height = childHeight3;
-
-        // Get the top position of the boxunder element
-        var boxunderTop = document.getElementById('boxundertext').getBoundingClientRect().top;
-
-        // Set the top position of the boxtext element to be the same as boxunder
-        document.getElementById('boxtextover').style.top = boxunderTop + 'px';
 
 
-        function scrollToBox10() {
-            var box10 = document.getElementById('form');
+        
 
-            // Check if the element exists
-            if (box10) {
-                // Scroll to the box10 element
-                box10.scrollIntoView({ behavior: 'smooth' });
-            }
-        }
+
+        
     </script>
     <script>
         const subpage1Content = {
             title: 'FinvestGroup',
             body: `
-            <div>
-                <h2>FinvestGroup Content</h2>
-                <p>This is the content for FinvestGroup.</p>
-            </div>
-        `
+                <div>
+                    <h2>FinvestGroup Content</h2>
+                    <p>This is the content for FinvestGroup.</p>
+                </div>
+            `
         }
 
         // Content for Subpage 2
         const subpage2Content = {
-            title: 'Subpage 2',
+            title: 'O Nás',
             body: `
-            <div>
-                <h2>Subpage 2 Content</h2>
-                <p>This is the content for Subpage 2.</p>
-            </div>
-        `
+                <div>
+                    <h2>Subpage 2 Content</h2>
+                    <p>This is the content for Subpage 2.</p>
+                </div>
+            `
         };
 
         // Content for Subpage 3
         const subpage3Content = {
-            title: 'Subpage 3',
+            title: 'Často kladené otázky',
+            style: '#accordionH1 {  }',
             body: `
-            <div>
-                <h2>Subpage 3 Content</h2>
-                <p>This is the content for Subpage 3.</p>
+                <p style="font-size: 11vmin; font-family: 'Archivo Black', sans-serif; color: #000; text-align: center; margin: 50px 0">Často kladené otázky</p>
+            <div class="accordion">
+                    <div class="heading" style="border-top-right-radius:1.5em; border-top-left-radius:1.5em;">Čo je účel tejto stránky?</div>
+                    <div class="contents">Naša stránka bola vytvorená s cieľom spojiť ľudí s kvalifikovanými finančnými poradcami.
+Poskytujeme jednoduchý a efektívny spôsob, ako nájsť odborníkov, ktorí vám pomôžu dosiahnuť vaše
+
+finančné ciele.</div>
+
+                    <div class="heading">Ako môžem nájsť finančného poradcu na vašej stránke?</div>
+                    <div class="contents">Proces je jednoduchý. Stačí vyplniť formulár na našej stránke s niekoľkými základnými informáciami a
+
+my vám pomôžeme nájsť vhodného finančného poradcu.</div>
+
+                    <div class="heading">Sú finanční poradcovia, ktorí sú dostupní na vašej stránke, overení?</div>
+                    <div class="contents">Áno, zabezpečujeme, aby všetci finanční poradcovia registrovaní na našej platforme boli overení a
+mali potrebné kvalifikácie. Zároveň poskytujeme recenzie a hodnotenia od predchádzajúcich
+
+klientov, aby ste mali lepší prehľad.</div>
+
+                    <div class="heading">Aké sú náklady na používanie tejto platformy?</div>
+                    <div class="contents">Používanie našej platformy a registrácia je pre klientov zdarma. Jednotliví finanční poradcovia môžu
+mať rôzne poplatky za svoje služby, záleží však od toho aké služby vyžadujete.</div>
+                    
+                    <div class="heading">Ako môžem byť istý, že moje osobné informácie sú v bezpečí?</div>
+                    <div class="contents">Ochrana vašich osobných údajov je našou prioritou. Využívame moderné bezpečnostné opatrenia,
+aby sme zabezpečili, že vaše informácie sú chránené a nepodliehajú neoprávnenému prístupu.</div>
+                    
+                    <div class="heading"style="border-bottom-right-radius:1.5em; border-bottom-left-radius:1.5em;">Môžem získať konzultáciu s finančným poradcom predtým, než sa rozhodnem?</div>
+                    <div class="contents">Áno, naša platforma vám umožňuje komunikovať s finančným poradcom predtým, než sa
+                        rozhodnete. Toto vám poskytuje príležitosť spraviť si vlastný názor a rozhodnúť sa či potrebujete jeho
+
+                        služby.
+
+                        Ak máte ďalšie otázky, neváhajte nás kontaktovať. Naša snaha je poskytnúť vám všetky informácie,
+
+                        ktoré potrebujete na rozhodovanie o svojich finančných cieľoch.
+                    </div>
             </div>
-        `
+            <div class="Divs" id="boxundertext">
+    <div class="cell">
+        <table id="reviewtable" style="width: 70vw; margin-left:15vw; margin-right:15vw;">
+            <tr>
+                <th colspan="2" id="reviewtableth">&#169;2024 Finvest. All rights reserved.</th>
+            </tr>
+        </table>
+    </div>
+</div>  
+            `
         };
 
         // Content for Subpage 4
         const subpage4Content = {
-            title: 'Subpage 4',
+            title: 'Kontakt',
             body: `
-            <div>
-                <h2>Subpage 4 Content</h2>
-                <p>This is the content for Subpage 4.</p>
-            </div>
-        `
+                <div>
+                    <h2>Subpage 4 Content</h2>
+                    <p>This is the content for Subpage 4.</p>
+                </div>
+            `
         };
+
 
         // Original content of the 'contentContainer' div
         const originalContent = document.getElementById('contentContainer').innerHTML;
-
-        // Function to set up the carousel
-        function setupCarousel() {
-            $(".owl-carousel").owlCarousel({
-                center: true,
-                stagePadding: 40,
-                loop: true,
-                margin: 5,
-                autoplay: true,
-                responsive: {
-                    0: {
-                        items: 1
-                    },
-                    600: {
-                        items: 1
-                    },
-                    1000: {
-                        items: 3
-                    }
-                }
-            });
-            var dots = $('.owl-dots').css('position', 'absolute').css('bottom', '-8vh');
-            dots.css('left', 'calc(50% - ' + dots.width() / 2 + 'px)');
-        }
-
-        // Call setupCarousel on page load
-        $(document).ready(function () {
-            setupCarousel();
-        });
 
         function loadSubpage(subpage) {
             let selectedContent;
@@ -855,10 +832,23 @@
                 setTimeout(function () {
                     setupCarousel();
                 }, 0);
+
+                setTimeout(function () {
+                    submitForm();
+                }, 0);
+
             } else if (subpage === 'subpage2') {
                 selectedContent = subpage2Content;
+
+
+
             } else if (subpage === 'subpage3') {
                 selectedContent = subpage3Content;
+
+                setTimeout(function () {
+                    setupAccordion();
+                }, 0);
+
             } else if (subpage === 'subpage4') {
                 selectedContent = subpage4Content;
             } else {
@@ -869,11 +859,161 @@
                 };
             }
 
+            document.body.style = selectedContent.style;
+
             // Update the <title> element for other subpages
             document.title = selectedContent.title;
 
             // Update the inner HTML of the 'contentContainer' div for other subpages
             document.getElementById('contentContainer').innerHTML = selectedContent.body;
+        }
+
+    </script>
+
+    <!--Subpage 1 scripts-->
+    <script>
+
+        jQuery(document).ready(function ($) {
+            $("#navigation-list").hide();
+            $(".menuBtn").click(function () {
+                $("#navigation-list").slideToggle(300);
+            });
+        });
+
+
+        function setupCarousel() {
+            $(".owl-carousel").owlCarousel({
+                center: true,
+                stagePadding: 40,
+                loop: true,
+                margin: 5,
+                autoplay: true,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    600: {
+                        items: 1
+                    },
+                    1000: {
+                        items: 3
+                    }
+                }
+            });
+            var dots = $('.owl-dots').css('position', 'absolute').css('bottom', '-8vh');
+            dots.css('left', 'calc(50% - ' + dots.width() / 2 + 'px)');
+        } 
+
+
+        $(document).ready(function () {
+            setupCarousel();
+        });
+
+
+        function scrollToBox10() {
+            var box10 = document.getElementById('form');
+
+            if (box10) {
+                box10.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('sheetdb-form').addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                submitForm();
+            });
+        });
+
+        function submitForm() {
+            const currentDate = new Date();
+            document.getElementById('submission-date').value = currentDate.toISOString().split('T')[0];
+            document.getElementById('submission-time').value = currentDate.toISOString().split('T')[1].split('.')[0];
+
+            const formData = new FormData(document.getElementById('sheetdb-form'));
+
+            const formDataObject = {};
+            formData.forEach((value, key) => {
+                const cleanedKey = key.replace(/^data\[/, '').replace(/\]$/, '');
+                formDataObject[cleanedKey] = value;
+            });
+
+            console.log('formDataObject:', formDataObject);
+
+            fetch('https://formupload.admin-476.workers.dev/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formDataObject),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+
+                    displaySuccessPopup();
+
+                    clearFormFields();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    displayErrorPopup();
+                });
+        }
+
+        function clearFormFields() {
+            const form = document.getElementById('sheetdb-form');
+            form.reset();
+        }
+
+        function displaySuccessPopup() {
+            alert('Form submitted successfully!');
+        }
+
+        function displayErrorPopup() {
+            alert('Error submitting the form. Please try again.');
+        }
+
+
+        var childDiv1 = document.getElementById('text1');
+        var childDiv2 = document.getElementById('text2');
+        var childDiv3 = document.getElementById('text3');
+
+        var childHeight1 = window.getComputedStyle(childDiv1).height;
+        var childHeight2 = window.getComputedStyle(childDiv2).height;
+        var childHeight3 = window.getComputedStyle(childDiv3).height;
+
+        document.getElementById('DivText1').style.height = childHeight1;
+        document.getElementById('DivText2').style.height = childHeight2;
+        document.getElementById('DivText3').style.height = childHeight3;
+
+        var boxunderTop = document.getElementById('boxundertext').getBoundingClientRect().top;
+
+        document.getElementById('boxtextover').style.top = boxunderTop + 'px';
+
+    </script>
+
+    <!--Subpage 2 scripts-->
+    <script>
+
+    </script>
+
+    <!--Subpage 3 scripts-->
+    <script>
+
+        function setupAccordion() {
+            $(document).ready(function () {
+                $(".accordion").on("click", ".heading", function () {
+
+                    $(this).toggleClass("active").next().slideToggle();
+
+                    $(".contents").not($(this).next()).slideUp(300);
+
+                    $(this).siblings().removeClass("active");
+                });
+            });
         }
     </script>
 </body>
