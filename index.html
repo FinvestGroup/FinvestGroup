@@ -102,14 +102,17 @@
             padding-right: 5%;
         }
 
-        .pright, .pleft, .pcenter {
+        .pright, .pleft {
             font-size: 5vmin;
-            /* Mobile default font size */
             color: #757c86;
+            text-align: justify;
+            padding-right: 5vw;
         }
 
         .pcenter {
             padding: 2.5vw;
+            font-size: 5vmin;
+            color: #757c86;
         }
 
         .text {
@@ -483,6 +486,9 @@
             line-height: 1.5;
         }
 
+        .pleft .pright {
+            
+        }
         
     </style>
 </head>
@@ -513,7 +519,8 @@
                     Dosiahnite svoje finančné ciele s Finvestom
                 </h1>
                 <p class="pmaintext">
-                    Finvest je online platforma, ktorá vám umožňuje skontaktovať sa so skúseným odborníkom, vzdeláva o financiách a zlepšuje finančnú gramotnosť.
+                    <b>Finvest</b> je online platforma, ktorá vám umožňuje skontaktovať sa so skúseným odborníkom,
+                    na sociálnych sieťach vzdeláva o financiách a zlepšuje finančnú gramotnosť.
                 </p>
                 <div class="form1">
                     <button type="button" class="buttonrd" onclick="scrollToBox10()">Mám záujem!</button>
@@ -544,7 +551,11 @@
                     Investujte s dôverou
                 </h2>
                 <p class="pright">
-                    Finvest vám pomáha investovať peniaze s dôverou. Naša platforma vám poskytuje informácie, ktoré potrebujete na dosiahnutie vašich finančných cieľov.
+                    Finvest vám pomáha investovať peniaze s dôverou. Na našich sociálnych sieťach vám
+                    poskytujeme informácie, ktoré potrebujete na dosiahnutie vašich finančných cieľov.
+                    Uvedomujeme si že každý človek má jedinečnú finančnú situáciu a skúsenosti. Preto
+                    <b>zabezpečujeme personalizované finančné poradenstvo</b> pre každého z vás. Pomáhame pri
+                    výbere finančného poradcu na základe odporúčaní, skúseností a služieb, ktoré ponúkajú.
                 </p>
             </div>
         </div>
@@ -554,10 +565,14 @@
         <div class="DivsText Divtext2">
             <div class="text" id="text2">
                 <h2 class="textleft">
-                    Zabezpečíme vám personalizované finančné poradenstvo
+                    Majte istotu pri každom rozhodnutí
                 </h2>
                 <p class="pleft">
-                    Naša platforma vám umožňuje spojiť sa s odborníkom ktorý posúdi vašu finančnú situáciu, ciele, toleranciu rizika a časový horizont, aby vytvoril personalizovaný finančný plán prispôsobený vašim potrebám. Berie do úvahy rôzne faktory, ktoré sú jedinečné pre vás a vaše okolnosti.
+                    Naša platforma vám umožňuje spojiť sa s odborníkom ktorý posúdi vašu finančnú situáciu,
+                    ciele, toleranciu rizika a časový horizont, aby vytvoril personalizovaný finančný plán
+                    prispôsobený vašim potrebám. Berie do úvahy rôzne faktory, ktoré sú <b>jedinečné pre vás a
+                    vaše okolnosti</b>. Je dôležité si uvedomiť, že existuje mnoho kompetentných finančných
+                    maklérov, ktorí sú zameraní na dlhodobý prospech svojich klientov.
                 </p>
             </div>
         </div>
@@ -570,7 +585,13 @@
                     Sledujte svoj pokrok
                 </h2>
                 <p class="pright">
-                    S Finvestom môžete sledovať svoj investičný pokrok a zhodnotiť svoje výnosy. Naše vedomosti vám pomôžu zlepšiť prehľad o svojich investíciách a rozhodovať na základe faktov.
+                    Naším hlavným cieľom je nielen zabezpečiť kvalitné finančné poradenstvo, ale aj podporovať
+                    <b>finančnú gramotnosť našej komunity</b>. Preto sme vytvorili neziskový projekt Finvest, kde sa
+                    získavanie vedomostí o financiách stáva zážitkom. Naše informácie vám pomôžu zlepšiť
+                    prehľad o svojich investíciách a rozhodovať na základe faktov. Nenechajte svoje finančné
+                    ciele na náhodu – sledujte svoj pokrok s Finvestom a dosiahnite finančnú nezávislosť, o
+
+                    ktorej snívate. <b>Vaša cesta k lepším financiám začína tu!</b>
                 </p>
             </div>
         </div>
@@ -735,29 +756,33 @@
             title: 'O Nás',
             body: `
                     <div>
-                        <p style="font-size: 7.5vmin; font-family: 'Archivo', sans-serif; color: #000; text-align: center; font-weight:800;margin-left:5vw; margin-right:5vw;">Prečo sme to začali robiť:</p>
-                        <p style="margin-top:10vmin;color: #757c86; font-size: 4.5vmin; font-family: 'Archivo', sans-serif; margin-left:5vw; margin-right:5vw;">Naša cesta začala s jednoznačným presvedčením: finančné poradenstvo môže znamenať rozdiel v
+                        <p style="margin-top:9vh;font-size: 6.5vmin; font-family: 'archivo black', sans-serif; color: #000; text-align: center; font-weight:800;margin-left:5vw; margin-right:5vw;">Prečo sme to začali robiť:</p>
+                        <p style="text-align: justify; margin-top:10vmin;color: #757c86; font-size: 4.5vmin; font-family: 'Archivo', sans-serif; margin-left:5vw; margin-right:5vw;">Naša cesta začala s jednoznačným presvedčením: finančné poradenstvo môže znamenať rozdiel v
 živote ľudí, ak im je poskytnuté kvalitne a s láskou k odboru. Zároveň sme si boli vedomí, že existuje
 množstvo predsudkov voči finančným poradcom. Rozhodli sme sa zmeniť túto perspektívu a ukázať
 ľuďom, prečo sú finanční poradcovia skvelým partnerom pre ich finančné ciele.</p>
-                        <p style="font-size: 7.5vmin; font-family: 'Archivo', sans-serif; color: #000; text-align: center; font-weight:800;margin-left:5vw; margin-right:5vw;">Náš cieľ:</p>
-                        <p style="margin-top:10vmin;color: #757c86; font-size: 4.5vmin; font-family: 'Archivo', sans-serif; margin-left:5vw; margin-right:5vw;">Náš cieľ je jednoduchý a zároveň nesmierne významný - chceme pomáhať ľuďom dosiahnuť finančnú
+                        <p style="font-size: 6.5vmin; font-family: 'archivo black', sans-serif; color: #000; text-align: center; font-weight:800;margin-left:5vw; margin-right:5vw;">Náš cieľ:</p>
+                        <p style="text-align: justify;margin-top:10vmin;color: #757c86; font-size: 4.5vmin; font-family: 'Archivo', sans-serif; margin-left:5vw; margin-right:5vw;">Náš cieľ je jednoduchý a zároveň nesmierne významný - chceme pomáhať ľuďom dosiahnuť finančnú
 stabilitu a nezávislosť prostredníctvom odborného finančného poradenstva. Veríme, že každý si
 zaslúži mať prístup k kvalifikovaným poradcom, ktorí mu pomôžu plánovať a dosahovať jeho finančné
 
 ciele.</p>
-                        <p style="font-size: 7.5vmin; font-family: 'Archivo', sans-serif; color: #000; text-align: center; font-weight:800;margin-left:5vw; margin-right:5vw;">Odstránenie predsudkov:</p>
-                        <p style="margin-top:10vmin;color: #757c86; font-size: 4.5vmin; font-family: 'Archivo', sans-serif; margin-left:5vw; margin-right:5vw;">Rozumieme, že finanční poradcovia nemajú vždy najlepšiu povesť. Naša misia je zmeniť tento názor.
+                        <p style="font-size: 6.5vmin; font-family: 'Archivo Black', sans-serif; color: #000; text-align: center; font-weight:800;margin-left:5vw; margin-right:5vw;">Odstránenie predsudkov:</p>
+                        <p style="text-align: justify;margin-top:10vmin;color: #757c86; font-size: 4.5vmin; font-family: 'Archivo', sans-serif; margin-left:5vw; margin-right:5vw;">Rozumieme, že finanční poradcovia nemajú vždy najlepšiu povesť. Naša misia je zmeniť tento názor.
 Chceme ukázať ľuďom, že finanční poradcovia nie sú len o číslach a tabuľkách, ale sú partnermi na
 ceste k lepšej finančnej budúcnosti. Sme tu, aby sme prekonali predsudky a prezentovali finančných
 poradcov ako spoľahlivých sprievodcov a poradcov na ceste k finančnej úspešnosti.</p>
-                        <p style="font-size: 7.5vmin; font-family: 'Archivo', sans-serif; color: #000; text-align: center; font-weight:800;margin-left:5vw; margin-right:5vw;">Naša odhodlanosť:</p>
-                        <p style="margin-top:10vmin;color: #757c86; font-size: 4.5vmin; font-family: 'Archivo', sans-serif; margin-left:5vw; margin-right:5vw;">Sme naozaj oddaní našej vízii. Šírime povedomie o tom, ako môžu vzťahy s odborníkmi na financie
+                        <p style="font-size: 6.5vmin; font-family: 'archivo black', sans-serif; color: #000; text-align: center; font-weight:800;margin-left:5vw; margin-right:5vw;">Naša odhodlanosť:</p>
+                        <p style="text-align: justify;margin-top:10vmin;color: #757c86; font-size: 4.5vmin; font-family: 'Archivo', sans-serif; margin-left:5vw; margin-right:5vw;">Sme naozaj oddaní našej vízii. Šírime povedomie o tom, ako môžu vzťahy s odborníkmi na financie
 viesť k prosperite a lepšiemu porozumeniu finančným možnostiam. Naša odhodlanosť spočíva v tom,
 aby sme vytvorili prostredie, kde ľudia nachádzajú pravdivé hodnoty a odborné vedenie, ktoré
 
 potrebujú pre svoju finančnú pohodu.</p>
+                        <p style="margin-top:8vh;margin-bottom:15vh;line-height: 1.1;font-size: 5.5vmin; font-family: 'archivo black', sans-serif; color: #000; text-align: center; font-weight:500;margin-left:5vw; margin-right:5vw;">Ďakujeme, že ste s nami na tejto ceste. Sme tu pre vás a vaše finančné úspechy sú náš
+
+hlavný záujem.</p>
                     </div>
+                    
                 `
         };
 
