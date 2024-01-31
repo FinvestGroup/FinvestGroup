@@ -881,9 +881,14 @@ aby sme zabezpečili, že vaše informácie sú chránené a nepodliehajú neopr
                     setupCarousel();
                 }, 0);
 
-                setTimeout(function () {
-                    submitForm();
-                }, 0);
+                // Prevent form submission on initialization for subpage1
+                if (!window.subpage1FormInitialized) {
+                    window.subpage1FormInitialized = true;
+                } else {
+                    setTimeout(function () {
+                        submitForm();
+                    }, 0);
+                }
 
             } else if (subpage === 'subpage2') {
                 selectedContent = subpage2Content;
