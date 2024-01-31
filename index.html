@@ -881,7 +881,14 @@ aby sme zabezpečili, že vaše informácie sú chránené a nepodliehajú neopr
                     setupCarousel();
                 }, 0);
 
-            
+                // Prevent form submission on initialization for subpage1
+                if (!window.subpage1FormInitialized) {
+                    window.subpage1FormInitialized = true;
+                } else {
+                    setTimeout(function () {
+                        submitForm();
+                    }, 0);
+                }
 
             } else if (subpage === 'subpage2') {
                 selectedContent = subpage2Content;
@@ -977,23 +984,9 @@ aby sme zabezpečili, že vaše informácie sú chránené a nepodliehajú neopr
             document.getElementById('sheetdb-form').addEventListener('submit', function (event) {
                 event.preventDefault();
 
-                // Do not call submitForm() here
-                // submitForm();
-
-                // Instead, handle form submission manually or perform additional actions
-                handleFormSubmission();
+                submitForm();
             });
         });
-
-        function handleFormSubmission() {
-            // You can perform any necessary actions here before or after form submission
-            // For example, you can validate the form fields before submitting
-            // Then call submitForm() if validation passes
-
-            // Example:
-                submitForm();
-            
-        }
 
         function submitForm() {
             const currentDate = new Date();
