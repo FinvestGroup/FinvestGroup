@@ -235,6 +235,8 @@
             font-size: 4vmin;
             font-weight: 300;
             text-align: center;
+            margin-left:8vw;
+            margin-right:8vw;
         }
 
         .DivsText {
@@ -491,7 +493,26 @@
         .pleft .pright {
             
         }
-        
+
+        .innerform {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: stretch;
+            justify-content: space-evenly;
+            flex-direction: row;
+            margin-left: 10%;
+            margin-right: 10%;
+            margin-top: 2.5vh;
+            border-radius: 0.5em;
+            border: 1px solid;
+            border-color: #757c86;
+            background-color:white;
+
+        }
+
+        input.suhlas {
+            transform:scale(1.7)
+        }
     </style>
 </head>
 <body>
@@ -696,6 +717,31 @@
                     <input type="text" id="last-name" class="form-field" autocomplete="family-name" name="data[last-name]" placeholder="Priezvisko" required>
                     <input type="email" id="email" class="form-field" autocomplete="email" name="data[email]" placeholder="Email" required>
                     <input type="tel" id="phone" class="form-field" autocomplete="tel" name="data[phone]" placeholder="Telefónne číslo" required>
+                    <select id="kraj" class="form-field" name="kraj">
+                        <option value="" disabled selected hidden>Vyber kraj</option>
+                        <option value="volvo">Bratislavský</option>
+                        <option value="saab">Trnavský</option>
+                        <option value="fiat">Trenčiansky</option>
+                        <option value="audi">Nitriansky</option>
+                        <option value="audi">Žilinský</option>
+                        <option value="audi">Banskobystrický</option>
+                        <option value="audi">Prešovský</option>
+                        <option value="audi">Košický</option>
+                    </select>
+                    <select id="pomoc" class="form-field" name="pomoc">
+                        <option value="" disabled selected hidden>S čím potrebujete pomôcť?</option>
+                        <option value="volvo">Komplexné poradenstvo</option>
+                        <option value="saab">Investície</option>
+                        <option value="fiat">Hypotekárny úver</option>
+                        <option value="audi">Poistenia</option>
+                        <option value="audi">Dôchodkové piliere</option>
+                    </select>
+                    <div class="innerform">
+                        <input type="checkbox" id="suhlas" class="suhlas" name="horns" required/>
+                        <label for="suhlas" style="width: 80%; text-align: left;">Súhlas s pravidlami o ochrane osobných údajov.</label>
+                    </div>
+
+
 
                     <!-- Hidden fields for automatic date and time -->
                     <input type="hidden" id="submission-date" name="data[submission-date]">
