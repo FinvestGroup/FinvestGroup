@@ -855,6 +855,7 @@ aby sme zabezpečili, že vaše informácie sú chránené a nepodliehajú neopr
                 `
         };
 
+        let currentSubpage = '';
 
         // Original content of the 'contentContainer' div
         const originalContent = document.getElementById('contentContainer').innerHTML;
@@ -881,9 +882,9 @@ aby sme zabezpečili, že vaše informácie sú chránené a nepodliehajú neopr
                     setupCarousel();
                 }, 0);
 
-                setTimeout(function () {
+                if (currentSubpage === 'subpage1' && !isFormEmpty()) {
                     submitForm();
-                }, 0);
+                }
 
             } else if (subpage === 'subpage2') {
                 selectedContent = subpage2Content;
@@ -979,11 +980,37 @@ aby sme zabezpečili, že vaše informácie sú chránené a nepodliehajú neopr
             document.getElementById('sheetdb-form').addEventListener('submit', function (event) {
                 event.preventDefault();
 
-                submitForm();
+                // Validate the form before submitting
+                if (validateForm()) {
+                    submitForm(); // Only submit the form if validation passes
+                } else {
+                    // Optionally, you can display an error message or take other actions
+                    console.log('Form validation failed. Please fill in all required fields.');
+                }
             });
         });
 
+        function validateForm() {
+            // Get form fields
+            var firstName = document.getElementById('first-name').value.trim();
+            var lastName = document.getElementById('last-name').value.trim();
+            var email = document.getElementById('email').value.trim();
+            var phone = document.getElementById('phone').value.trim();
+
+            // Perform validation
+            if (firstName === '' || lastName === '' || email === '' || phone === '') {
+                // If any of the required fields are empty, return false
+                return false;
+            }
+
+            // Optionally, you can perform additional validation here
+
+            // If all validation passes, return true
+            return true;
+        }
+
         function submitForm() {
+            // Your form submission logic remains unchanged
             const currentDate = new Date();
             document.getElementById('submission-date').value = currentDate.toISOString().split('T')[0];
             document.getElementById('submission-time').value = currentDate.toISOString().split('T')[1].split('.')[0];
