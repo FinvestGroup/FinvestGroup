@@ -922,9 +922,17 @@ aby sme zabezpečili, že vaše informácie sú chránené a nepodliehajú neopr
     <script>
 
         jQuery(document).ready(function ($) {
+            // Hide the navigation list initially
             $("#navigation-list").hide();
+
+            // Toggle the navigation list when the menu button is clicked
             $(".menuBtn").click(function () {
                 $("#navigation-list").slideToggle(300);
+            });
+
+            // Add event listener to each menu item to close the menu when clicked
+            $("#navigation-list li").click(function () {
+                $("#navigation-list").slideUp(300);
             });
         });
 
