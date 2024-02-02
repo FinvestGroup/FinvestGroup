@@ -494,7 +494,7 @@
             
         }
 
-        .innerform {
+        .formtable {
             display: flex;
             flex-wrap: wrap;
             align-items: stretch;
@@ -513,6 +513,22 @@
         input.suhlas {
             transform:scale(1.7)
         }
+
+        .formcell2 {
+            width: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+
+        .checkbox {
+            margin-right: 5px; /* Adjust as needed */
+        }
     </style>
 </head>
 <body>
@@ -526,7 +542,9 @@
             </div>
             <nav id="navigation-list">
                 <ul>
-                    <li onclick="loadSubpage('subpage1')">Domov</li>
+                    <a href="https://www.finvestgroup.sk">
+                    <li>Domov</li>
+                    </a>
                     <li onclick="loadSubpage('subpage2')">O nás</li>
                     <li onclick="loadSubpage('subpage3')">FAQ</li>
                     <li onclick="loadSubpage('subpage4')">Kontakt</li>
@@ -733,10 +751,16 @@
                         <option value="audi">Poistenia</option>
                         <option value="audi">Dôchodkové piliere</option>
                     </select>
-                    <div class="innerform">
-                        <input type="checkbox" id="suhlas" class="suhlas" name="horns" required/>
-                        <label for="suhlas" style="width: 80%; text-align: left;">Súhlas s pravidlami o ochrane osobných údajov.</label>
+
+                    <div class="formtable">
+                        <div class="formcell2">
+                            <div class="checkbox-container">
+                                <input type="checkbox" id="suhlas" class="suhlas" name="horns" required />
+                                <label for="suhlas" style="width: 80%; text-align: left; margin-bottom:0px;">Súhlas s pravidlami o ochrane osobných údajov.</label>
+                            </div>
+                        </div>
                     </div>
+
 
 
 
@@ -919,14 +943,72 @@ aby sme zabezpečili, že vaše informácie sú chránené a nepodliehajú neopr
                 // Update the inner HTML of the 'contentContainer' div
                 document.getElementById('contentContainer').innerHTML = selectedContent.body;
 
-                // Reload the page after the content is updated
+                // Use setTimeout to ensure that the content is updated before calling setupCarousel
                 setTimeout(function () {
-                    location.reload();
+                    setupCarousel();
                 }, 0);
+
+                var submitForm = function () {
+                    document.addEventListener('DOMContentLoaded', function () {
+                        document.getElementById('sheetdb-form').addEventListener('submit', function (event) {
+                            event.preventDefault();
+
+                            submitForm();
+                        });
+                    });
+
+                    function submitForm() {
+                        const currentDate = new Date();
+                        document.getElementById('submission-date').value = currentDate.toISOString().split('T')[0];
+                        document.getElementById('submission-time').value = currentDate.toISOString().split('T')[1].split('.')[0];
+
+                        const formData = new FormData(document.getElementById('sheetdb-form'));
+
+                        const formDataObject = {};
+                        formData.forEach((value, key) => {
+                            const cleanedKey = key.replace(/^data\[/, '').replace(/\]$/, '');
+                            formDataObject[cleanedKey] = value;
+                        });
+
+                        console.log('formDataObject:', formDataObject);
+
+                        fetch('https://formupload.admin-476.workers.dev/', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(formDataObject),
+                        })
+                            .then(response => response.json())
+                            .then(data => {
+                                console.log(data);
+
+                                displaySuccessPopup();
+
+                                clearFormFields();
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                                displayErrorPopup();
+                            });
+                    }
+
+                    function clearFormFields() {
+                        const form = document.getElementById('sheetdb-form');
+                        form.reset();
+                    }
+
+                    function displaySuccessPopup() {
+                        alert('Form submitted successfully!');
+                    }
+
+                    function displayErrorPopup() {
+                        alert('Error submitting the form. Please try again.');
+                    }
+                };
 
             } else if (subpage === 'subpage2') {
                 selectedContent = subpage2Content;
-            }
 
 
 
