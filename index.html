@@ -919,17 +919,14 @@ aby sme zabezpečili, že vaše informácie sú chránené a nepodliehajú neopr
                 // Update the inner HTML of the 'contentContainer' div
                 document.getElementById('contentContainer').innerHTML = selectedContent.body;
 
-                // Use setTimeout to ensure that the content is updated before calling setupCarousel
+                // Reload the page after the content is updated
                 setTimeout(function () {
-                    setupCarousel();
-                }, 0);
-
-                setTimeout(function () {
-                    submitForm();
+                    location.reload();
                 }, 0);
 
             } else if (subpage === 'subpage2') {
                 selectedContent = subpage2Content;
+            }
 
 
 
