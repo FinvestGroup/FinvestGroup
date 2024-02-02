@@ -531,6 +531,16 @@
         .checkbox {
             margin-right: 5px; /* Adjust as needed */
         }
+
+        textarea,
+        input.text,
+        input[type="text"],
+        input[type="button"],
+        input[type="submit"],
+        .input-checkbox {
+            -webkit-appearance: none;
+        } 
+
     </style>
 </head>
 <body>
@@ -908,6 +918,9 @@ aby sme zabezpečili, že vaše informácie sú chránené a nepodliehajú neopr
         const subpage4Content = {
             title: 'Kontakt',
             body: `
+                    <div style="width:100vw; height:1/7vh;">
+
+                    </div>
                     <div style="height:70vh;display: flex; align-content: center; flex-wrap: wrap; justify-content: center;">
                         <p style="font-size: 6.2vmin; font-family: 'Archivo Black', sans-serif; color: #000; text-align: center; font-weight:800;margin-left:5vw; margin-right:5vw">Kontakt</p>
                         <p style="text-align: center;margin-top:0vmin;color: #757c86; font-size: 4.5vmin; font-family: 'Archivo', sans-serif; margin-left:5vw; margin-right:5vw;">Zákaznícky servis Finvestgroup.sk</br>
