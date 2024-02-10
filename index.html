@@ -541,6 +541,13 @@
             -webkit-appearance: none;
         } 
 
+        .iglogo {
+            height:auto;
+            width:13vmin;
+            margin-left:45vw;
+            margin-right:45vw;
+            filter:invert(100%);
+        }
     </style>
 </head>
 <body>
@@ -788,10 +795,17 @@
         </div>
     </div>
     <div class="Divs" id="boxundertext">
+        
         <div class="cell">
-            <table id="reviewtable" style="width: 70vw; margin-left:15vw; margin-right:15vw;">
+            <table id="reviewtable" style="width: 70vw; margin-left:15vw; margin-right:15vw;margin-bottom:3vmin; height:20vmin;">
                 <tr>
-                    <th colspan="2" id="reviewtableth">&#169;2024 Finvest. All rights reserved.</th>
+                    <a href="instagram://user?username=finvest.sk"><img src="assets/images/IG_logo.png" class="iglogo" /></a>
+                </tr>
+                <tr>
+                    <th colspan="2" id="reviewtableth"><u style=" font-size: 3.5vmin;" onclick="loadSubpage('subpage5')">Ochrana osobných údajov</u></th>
+                </tr>
+                <tr>                  
+                    <th colspan="2" id="reviewtableth">&#169;2024 FinvestGroup.sk. All rights reserved.
                 </tr>
             </table>
         </div>
@@ -937,6 +951,56 @@ aby sme zabezpečili, že vaše informácie sú chránené a nepodliehajú neopr
                 `
         };
 
+        // Content for Subpage 5
+        const subpage5Content = {
+            title: 'Ochrana osobných údajov',
+            body: `
+            <div style="width:90vw; margin-left:5vw; margin-right:5vw; border:1px grey; text-align:center; color: #757c86; font-size: 4.5vmin; font-family: 'Archivo', sans-serif;">
+                <p style="">
+                    <p style="font-size: 6.2vmin; font-family: 'archivo black', sans-serif; color: #000; text-align: center; font-weight:800; margin:4vmin;">Ochrana osobných údajov</p><br>
+
+                    <p>Vaše súkromie je pre nás dôležité. Preto berieme ochranu vašich osobných údajov vážne a je
+                    pre nás prioritou, aby vaše údaje boli v bezpečí. Záväzne dodržiavame platné zákony a
+                    predpisy týkajúce sa ochrany osobných údajov, vrátane zákona č. 122/2013 Z.z. (ďalej len
+
+                    „zákon o ochrane osobných údajov“).</p><br>
+                    <p style="font-size: 6.2vmin; font-family: 'archivo black', sans-serif; color: #000; text-align: center; font-weight:800; margin:4vmin;">Zbieranie a spracovanie osobných údajov</p><br>
+
+                    <p>Všetky osobné údaje, ktoré nám poskytnete počas vašej návštevy na našich stránkach, sú
+                    spracovávané s maximálnou starostlivosťou a v súlade so zákonom o ochrane osobných
+                    údajov. Tieto údaje môžu zahŕňať vaše meno, e-mailovú adresu, telefónne číslo a ďalšie
+
+                    kontaktné informácie.</p><br>
+                    <p style="font-size: 6.2vmin; font-family: 'archivo black', sans-serif; color: #000; text-align: center; font-weight:800; margin:4vmin;">Účel spracovania údajov</p><br>
+
+                    <p>Vaše osobné údaje sú zbierané a spracovávané výlučne za účelom poskytovania informácií o
+                    našich finančných službách a kontaktovaním v prípade záujmu o tieto služby. Vaše údaje
+                    nebudú použité na žiadny iný účel bez vášho predchádzajúceho súhlasu.</p><br>
+
+                    <p style="font-size: 6.2vmin; font-family: 'archivo black', sans-serif; color: #000; text-align: center; font-weight:800; margin:4vmin;">Súhlas so spracovaním osobných údajov</p><br>
+
+                    <p>Dobrovoľným vyplnením vašich osobných údajov na našich stránkach dávate súhlas s ich
+                    spracovaním v súlade so zákonom o ochrane osobných údajov. Váš súhlas je pre nás dôležitý
+
+                    a zabezpečujeme, aby bol spracovaný transparentne a zodpovedne.</p><br>
+
+                    <p style="font-size: 6.2vmin; font-family: 'archivo black', sans-serif; color: #000; text-align: center; font-weight:800; margin:4vmin;">Bezpečnosť údajov</p><br>
+
+                    <p>Vaše osobné údaje sú u nás v bezpečí. Používame moderné bezpečnostné opatrenia na
+                    ochranu pred neoprávneným prístupom, zneužitím, stratou alebo neoprávneným
+
+                    uverejnením vašich údajov.</p><br>
+                    <p style="font-size: 6.2vmin; font-family: 'archivo black', sans-serif; color: #000; text-align: center; font-weight:800; margin:4vmin;">Kontakt</p><br>
+
+                    <p>Ak máte akékoľvek otázky alebo obavy týkajúce sa ochrany osobných údajov, neváhajte nás
+                    kontaktovať. Naše kontaktné informácie nájdete na našej webovej stránke.</p><br>
+
+                    Posledná aktualizácia: 10. február 2024.
+                </p>
+            </div>
+        `
+        };
+
 
         // Original content of the 'contentContainer' div
         const originalContent = document.getElementById('contentContainer').innerHTML;
@@ -1036,6 +1100,10 @@ aby sme zabezpečili, že vaše informácie sú chránené a nepodliehajú neopr
 
             } else if (subpage === 'subpage4') {
                 selectedContent = subpage4Content;
+
+            } else if (subpage === 'subpage5') {
+                selectedContent = subpage5Content;
+
             } else {
                 // Default content or handle invalid subpage
                 selectedContent = {
