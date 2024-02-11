@@ -1069,7 +1069,8 @@ aby sme zabezpečili, že vaše informácie sú chránené a nepodliehajú neopr
 
                     let isSubmitting = false;
 
-                    document.getElementById("form").addEventListener("submit", function (event) {
+                    document.addEventListener("submit", function (event) {
+                        if (!event.target.matches("#form")) return; // Check if the submitted form is the target form
                         event.preventDefault(); // Prevent default form submission behavior
 
                         if (isSubmitting) {
@@ -1150,6 +1151,7 @@ aby sme zabezpečili, že vaše informácie sú chránené a nepodliehajú neopr
                         console.log('Displaying error popup...');
                         alert('Error submitting the form. Please try again.');
                     }
+
                 } else if (subpage === 'subpage2') {
                     selectedContent = subpage2Content;
 
