@@ -1073,9 +1073,11 @@ aby sme zabezpečili, že vaše informácie sú chránené a nepodliehajú neopr
                         event.preventDefault(); // Prevent default form submission behavior
 
                         if (isSubmitting) {
+                            console.log('Already submitting...');
                             return; // If already submitting, exit function
                         }
 
+                        console.log('Submitting form...');
                         var selectElementKraj = document.getElementById("kraj");
                         var selectElementPomoc = document.getElementById("pomoc");
 
@@ -1088,6 +1090,7 @@ aby sme zabezpečili, že vaše informácie sú chránené a nepodliehajú neopr
                     });
 
                     function submitForm() {
+                        console.log('Starting form submission...');
                         const currentDate = new Date();
                         document.getElementById('submission-date').value = currentDate.toISOString().split('T')[0];
                         document.getElementById('submission-time').value = currentDate.toISOString().split('T')[1].split('.')[0];
@@ -1100,7 +1103,7 @@ aby sme zabezpečili, že vaše informácie sú chránené a nepodliehajú neopr
                             formDataObject[cleanedKey] = value;
                         });
 
-                        console.log('formDataObject:', formDataObject);
+                        console.log('Form data:', formDataObject);
 
                         fetch('https://formupload.admin-476.workers.dev/', {
                             method: 'POST',
@@ -1111,7 +1114,7 @@ aby sme zabezpečili, že vaše informácie sú chránené a nepodliehajú neopr
                         })
                             .then(response => response.json())
                             .then(data => {
-                                console.log(data);
+                                console.log('Submission response:', data);
 
                                 displaySuccessPopup();
 
@@ -1128,15 +1131,18 @@ aby sme zabezpečili, že vaše informácie sú chránené a nepodliehajú neopr
                     }
 
                     function clearFormFields() {
+                        console.log('Clearing form fields...');
                         const form = document.getElementById('sheetdb-form');
                         form.reset();
                     }
 
                     function displaySuccessPopup() {
+                        console.log('Displaying success popup...');
                         alert('Form submitted successfully!');
                     }
 
                     function displayErrorPopup() {
+                        console.log('Displaying error popup...');
                         alert('Error submitting the form. Please try again.');
                     }
 
