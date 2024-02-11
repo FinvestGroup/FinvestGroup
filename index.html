@@ -1260,14 +1260,6 @@ aby sme zabezpečili, že vaše informácie sú chránené a nepodliehajú neopr
             }
 
 
-            document.addEventListener('DOMContentLoaded', function () {
-                document.getElementById('sheetdb-form').addEventListener('submit', function (event) {
-                    event.preventDefault();
-
-                    submitForm();
-                });
-            });
-
             document.getElementById("form").onsubmit = function (event) {
                 event.preventDefault(); // Prevent default form submission behavior
 
