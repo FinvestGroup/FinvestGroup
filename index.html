@@ -1241,16 +1241,16 @@ aby sme zabezpečili, že vaše informácie sú chránené a nepodliehajú neopr
                 });
             });
 
-            document.getElementById("form").onsubmit = function () {
+            document.getElementById("form").onsubmit = function (event) {
+                event.preventDefault(); // Prevent default form submission behavior
+
                 var selectElementKraj = document.getElementById("kraj");
                 var selectElementPomoc = document.getElementById("pomoc");
 
                 if (selectElementKraj.value === "" || selectElementPomoc.value === "") {
                     alert("Please select an option for both fields!");
-                    return false; // Prevent form submission
                 } else {
                     submitForm();
-                    return false; // Prevent form submission to allow asynchronous submission via fetch
                 }
             };
 
