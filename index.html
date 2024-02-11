@@ -1067,10 +1067,14 @@ aby sme zabezpečili, že vaše informácie sú chránené a nepodliehajú neopr
                         setupCarousel();
                     }, 0);
 
-                    document.getElementById("form").addEventListener("submit", handleFormSubmission);
+                    let isSubmitting = false;
 
-                    function handleFormSubmission(event) {
+                    document.getElementById("form").addEventListener("submit", function (event) {
                         event.preventDefault(); // Prevent default form submission behavior
+
+                        if (isSubmitting) {
+                            return; // If already submitting, exit function
+                        }
 
                         var selectElementKraj = document.getElementById("kraj");
                         var selectElementPomoc = document.getElementById("pomoc");
@@ -1078,10 +1082,10 @@ aby sme zabezpečili, že vaše informácie sú chránené a nepodliehajú neopr
                         if (selectElementKraj.value === "" || selectElementPomoc.value === "") {
                             alert("Please select an option for both fields!");
                         } else {
+                            isSubmitting = true; // Set flag to indicate submission in progress
                             submitForm();
-                            document.getElementById("form").removeEventListener("submit", handleFormSubmission);
                         }
-                    }
+                    });
 
                     function submitForm() {
                         const currentDate = new Date();
@@ -1112,12 +1116,14 @@ aby sme zabezpečili, že vaše informácie sú chránené a nepodliehajú neopr
                                 displaySuccessPopup();
 
                                 clearFormFields();
-                                document.getElementById("form").addEventListener("submit", handleFormSubmission);
+
+                                isSubmitting = false; // Reset flag after successful submission
                             })
                             .catch(error => {
                                 console.error('Error:', error);
                                 displayErrorPopup();
-                                document.getElementById("form").addEventListener("submit", handleFormSubmission);
+
+                                isSubmitting = false; // Reset flag after error
                             });
                     }
 
