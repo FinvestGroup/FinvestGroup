@@ -1187,6 +1187,14 @@ aby sme zabezpečili, že vaše informácie sú chránené a nepodliehajú neopr
                 }
             };
 
+            document.getElementById("form").onsubmit = function () {
+                var selectElement = document.getElementById("pomoc");
+                if (selectElement.value === "") {
+                    alert("Please select an option!");
+                    return false; // Prevent form submission
+                }
+            };
+
 
             jQuery(document).ready(function ($) {
                 // Hide the navigation list initially
