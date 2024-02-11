@@ -574,6 +574,10 @@
             background-color:white;
             text-align: -webkit-center;
         }
+
+        option[default] {
+            display: none;
+        }
     </style>
 </head>
 <div class="pagewrapper">
@@ -837,7 +841,6 @@
                 </table>
             </div>
         </div>
-
 
 
         <script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
@@ -1173,7 +1176,16 @@ aby sme zabezpečili, že vaše informácie sú chránené a nepodliehajú neopr
 
         <!--Subpage 1 scripts-->
         <script>
-            
+            $('select').selectmenu();
+
+
+            document.getElementById("form").onsubmit = function () {
+                var selectElement = document.getElementById("kraj");
+                if (selectElement.value === "") {
+                    alert("Please select an option!");
+                    return false; // Prevent form submission
+                }
+            };
 
 
             jQuery(document).ready(function ($) {
