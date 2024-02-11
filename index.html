@@ -1069,15 +1069,13 @@ aby sme zabezpečili, že vaše informácie sú chránené a nepodliehajú neopr
 
                     let isSubmitting = false;
 
-                    document.getElementById("form").addEventListener("submit", function (event) {
+                    function handleFormSubmission(event) {
                         event.preventDefault(); // Prevent default form submission behavior
 
                         if (isSubmitting) {
-                            console.log('Already submitting...');
                             return; // If already submitting, exit function
                         }
 
-                        console.log('Submitting form...');
                         var selectElementKraj = document.getElementById("kraj");
                         var selectElementPomoc = document.getElementById("pomoc");
 
@@ -1087,10 +1085,11 @@ aby sme zabezpečili, že vaše informácie sú chránené a nepodliehajú neopr
                             isSubmitting = true; // Set flag to indicate submission in progress
                             submitForm();
                         }
-                    });
+                    }
+
+                    document.getElementById("form").addEventListener("submit", handleFormSubmission);
 
                     function submitForm() {
-                        console.log('Starting form submission...');
                         const currentDate = new Date();
                         document.getElementById('submission-date').value = currentDate.toISOString().split('T')[0];
                         document.getElementById('submission-time').value = currentDate.toISOString().split('T')[1].split('.')[0];
@@ -1103,8 +1102,6 @@ aby sme zabezpečili, že vaše informácie sú chránené a nepodliehajú neopr
                             formDataObject[cleanedKey] = value;
                         });
 
-                        console.log('Form data:', formDataObject);
-
                         fetch('https://formupload.admin-476.workers.dev/', {
                             method: 'POST',
                             headers: {
@@ -1114,38 +1111,29 @@ aby sme zabezpečili, že vaše informácie sú chránené a nepodliehajú neopr
                         })
                             .then(response => response.json())
                             .then(data => {
-                                console.log('Submission response:', data);
-
                                 displaySuccessPopup();
-
                                 clearFormFields();
-
                                 isSubmitting = false; // Reset flag after successful submission
                             })
                             .catch(error => {
                                 console.error('Error:', error);
                                 displayErrorPopup();
-
                                 isSubmitting = false; // Reset flag after error
                             });
                     }
 
                     function clearFormFields() {
-                        console.log('Clearing form fields...');
                         const form = document.getElementById('sheetdb-form');
                         form.reset();
                     }
 
                     function displaySuccessPopup() {
-                        console.log('Displaying success popup...');
                         alert('Form submitted successfully!');
                     }
 
                     function displayErrorPopup() {
-                        console.log('Displaying error popup...');
                         alert('Error submitting the form. Please try again.');
                     }
-
                 } else if (subpage === 'subpage2') {
                     selectedContent = subpage2Content;
 
