@@ -560,6 +560,19 @@
         #navigation-list {
             display:none;
         }
+
+        select {
+            -webkit-appearance: none;
+            appearance: none;
+            /* Add paddings to accommodate arrow */
+            padding: 8px;
+            padding-right: 30px;
+            /* Add arrow icon */
+            /* Source: https://material.io/tools/icons/?icon=keyboard_arrow_down&style=baseline */
+            background-image: url('data:image/svg+xml;charset=utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" xml:space="preserve"><path d="M7.41,8.59L12,13.17l4.59-4.58L18,10l-6,6l-6-6L7.41,8.59z"/><path fill="none" d="M0,0h24v24H0V0z"/></svg>');
+            background-position: center right;
+            background-repeat: no-repeat;
+        }
     </style>
 </head>
 <div class="pagewrapper">
