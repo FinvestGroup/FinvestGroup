@@ -1177,21 +1177,6 @@ aby sme zabezpečili, že vaše informácie sú chránené a nepodliehajú neopr
         <!--Subpage 1 scripts-->
         <script>
 
-            document.getElementById("form").onsubmit = function () {
-                var selectElement = document.getElementById("kraj");
-                if (selectElement.value === "") {
-                    alert("Please select an option!");
-                    return false; // Prevent form submission
-                }
-            };
-
-            document.getElementById("form").onsubmit = function () {
-                var selectElement = document.getElementById("pomoc");
-                if (selectElement.value === "") {
-                    alert("Please select an option!");
-                    return false; // Prevent form submission
-                }
-            };
 
 
             jQuery(document).ready(function ($) {
@@ -1256,6 +1241,19 @@ aby sme zabezpečili, že vaše informácie sú chránené a nepodliehajú neopr
                 });
             });
 
+            document.getElementById("form").onsubmit = function () {
+                var selectElementKraj = document.getElementById("kraj");
+                var selectElementPomoc = document.getElementById("pomoc");
+
+                if (selectElementKraj.value === "" || selectElementPomoc.value === "") {
+                    alert("Please select an option for both fields!");
+                    return false; // Prevent form submission
+                } else {
+                    submitForm();
+                    return false; // Prevent form submission to allow asynchronous submission via fetch
+                }
+            };
+
             function submitForm() {
                 const currentDate = new Date();
                 document.getElementById('submission-date').value = currentDate.toISOString().split('T')[0];
@@ -1304,8 +1302,6 @@ aby sme zabezpečili, že vaše informácie sú chránené a nepodliehajú neopr
             function displayErrorPopup() {
                 alert('Error submitting the form. Please try again.');
             }
-
-
             var childDiv1 = document.getElementById('text1');
             var childDiv2 = document.getElementById('text2');
             var childDiv3 = document.getElementById('text3');
