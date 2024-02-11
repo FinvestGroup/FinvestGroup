@@ -1066,57 +1066,79 @@ aby sme zabezpečili, že vaše informácie sú chránené a nepodliehajú neopr
                         setupCarousel();
                     }, 0);
 
-                    
+                    let isSubmitting = false;
 
-                        function submitForm() {
-                            const currentDate = new Date();
-                            document.getElementById('submission-date').value = currentDate.toISOString().split('T')[0];
-                            document.getElementById('submission-time').value = currentDate.toISOString().split('T')[1].split('.')[0];
+                    document.getElementById("form").onsubmit = function (event) {
+                        event.preventDefault(); // Prevent default form submission behavior
 
-                            const formData = new FormData(document.getElementById('sheetdb-form'));
-
-                            const formDataObject = {};
-                            formData.forEach((value, key) => {
-                                const cleanedKey = key.replace(/^data\[/, '').replace(/\]$/, '');
-                                formDataObject[cleanedKey] = value;
-                            });
-
-                            console.log('formDataObject:', formDataObject);
-
-                            fetch('https://formupload.admin-476.workers.dev/', {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                },
-                                body: JSON.stringify(formDataObject),
-                            })
-                                .then(response => response.json())
-                                .then(data => {
-                                    console.log(data);
-
-                                    displaySuccessPopup();
-
-                                    clearFormFields();
-                                })
-                                .catch(error => {
-                                    console.error('Error:', error);
-                                    displayErrorPopup();
-                                });
+                        if (isSubmitting) {
+                            return; // If already submitting, exit function
                         }
 
-                        function clearFormFields() {
-                            const form = document.getElementById('sheetdb-form');
-                            form.reset();
-                        }
+                        var selectElementKraj = document.getElementById("kraj");
+                        var selectElementPomoc = document.getElementById("pomoc");
 
-                        function displaySuccessPopup() {
-                            alert('Form submitted successfully!');
-                        }
-
-                        function displayErrorPopup() {
-                            alert('Error submitting the form. Please try again.');
+                        if (selectElementKraj.value === "" || selectElementPomoc.value === "") {
+                            alert("Please select an option for both fields!");
+                        } else {
+                            isSubmitting = true; // Set flag to indicate submission in progress
+                            submitForm();
                         }
                     };
+
+                    function submitForm() {
+                        const currentDate = new Date();
+                        document.getElementById('submission-date').value = currentDate.toISOString().split('T')[0];
+                        document.getElementById('submission-time').value = currentDate.toISOString().split('T')[1].split('.')[0];
+
+                        const formData = new FormData(document.getElementById('sheetdb-form'));
+
+                        const formDataObject = {};
+                        formData.forEach((value, key) => {
+                            const cleanedKey = key.replace(/^data\[/, '').replace(/\]$/, '');
+                            formDataObject[cleanedKey] = value;
+                        });
+
+                        console.log('formDataObject:', formDataObject);
+
+                        fetch('https://formupload.admin-476.workers.dev/', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(formDataObject),
+                        })
+                            .then(response => response.json())
+                            .then(data => {
+                                console.log(data);
+
+                                displaySuccessPopup();
+
+                                clearFormFields();
+
+                                isSubmitting = false; // Reset flag after successful submission
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                                displayErrorPopup();
+
+                                isSubmitting = false; // Reset flag after error
+                            });
+                    }
+
+                    function clearFormFields() {
+                        const form = document.getElementById('sheetdb-form');
+                        form.reset();
+                    }
+
+                    function displaySuccessPopup() {
+                        alert('Form submitted successfully!');
+                    }
+
+                    function displayErrorPopup() {
+                        alert('Error submitting the form. Please try again.');
+                    }
+
 
                 } else if (subpage === 'subpage2') {
                     selectedContent = subpage2Content;
