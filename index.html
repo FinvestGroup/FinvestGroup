@@ -1465,18 +1465,23 @@ aby sme zabezpečili, že vaše informácie sú chránené a nepodliehajú neopr
                 // Hide the navigation list initially
                 $("#navigation-list").hide();
 
-                // Add event listener to toggle the navigation list when the label is checked
+                // Add event listener to toggle the navigation list when the label is clicked
                 $(".label1").on('click', function () {
-                    if ($("#check").is(":checked")) {
+                    var $checkbox = $("#check");
+                    if ($checkbox.is(":checked")) {
                         $("#navigation-list").slideDown(300);
                     } else {
-                        $("#navigation-list").slideUp(300);
+                        $("#navigation-list").slideUp(300, function () {
+                            $checkbox.prop("checked", false); // Uncheck the checkbox when the menu slides up
+                        });
                     }
                 });
 
                 // Add event listener to each menu item to close the menu when clicked
                 $("#navigation-list li").click(function () {
-                    $("#navigation-list").slideUp(300);
+                    $("#navigation-list").slideUp(300, function () {
+                        $("#check").prop("checked", false); // Uncheck the checkbox when the menu slides up
+                    });
                 });
             });
 
