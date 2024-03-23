@@ -24,8 +24,8 @@
 
 .owl-dot, .owl-carousel button.owl-dot {
     background-color: #fff;
-    height: 13px;
-    width: 13px;
+    height: 3vmin;
+    width: 3vmin;
     border-radius: 50%;
     margin: 0 4px;
     display: inline-block;
